@@ -1,0 +1,51 @@
+import json
+import re
+import time
+import urllib
+from urllib.parse import urlencode
+import urllib.request
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urlencode
+from cloudant.adapters import Replay429Adapter
+
+
+
+with open('20209109.txt','r',encoding='utf-8') as f:
+    a1 = f.readline()
+    while a1:
+
+        a = {'q': a1}
+        url = 'https://www.geocoding.jp/?q='
+        https = url + urlencode(a)
+        page = urllib.request.urlopen(https).read()
+        soup = BeautifulSoup(page, "html.parser")
+#        print(soup)
+        print(soup.find_all('b'))
+##
+#        for k in soup.find_all('span', class_='nowrap', ):
+#            k1 = k.find_all('b')
+#
+ #           print(k1)
+#            tst = open('spotaddress.txt', 'a+')
+#            tst.write(k1)
+#            break
+        time.sleep(15)
+        a1 =f.readline()
+
+#print(soup)
+#tag = soup.find('span',class_='latlang').get_te
+#print(tag)
+#htm = urllib.request.urlopen(u)
+#content = htm.read()
+# print(soup.find_all('span',class_='latlng',))
+# [<span class="latlng">緯度: <b>33.570141</b> 経度: <b>130.256512</b></span>, <span class="latlng">Open Location Code(OLC): <b>8Q5GH7C4+3J</b></span>]
+
+#soup = BeautifulSoup(content,"html.prse")
+
+
+#print(soup)
+
+#html = urllib.request.urlopen(u)
+#content = json.loads(html.read().decode('utf8'))
+
+#print(content)
